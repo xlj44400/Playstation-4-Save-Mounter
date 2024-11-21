@@ -28,360 +28,431 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.ipTextBox = new System.Windows.Forms.TextBox();
-            this.connectButton = new System.Windows.Forms.Button();
-            this.processesButton = new System.Windows.Forms.Button();
-            this.setupButton = new System.Windows.Forms.Button();
-            this.processesComboBox = new System.Windows.Forms.ComboBox();
-            this.userComboBox = new System.Windows.Forms.ComboBox();
-            this.dirsComboBox = new System.Windows.Forms.ComboBox();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.mountButton = new System.Windows.Forms.Button();
-            this.unmountButton = new System.Windows.Forms.Button();
-            this.connectionGroupBox = new System.Windows.Forms.GroupBox();
-            this.ipLabel = new System.Windows.Forms.Label();
-            this.createGroupBox = new System.Windows.Forms.GroupBox();
-            this.sizeLabel = new System.Windows.Forms.Label();
-            this.sizeTrackBar = new System.Windows.Forms.TrackBar();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.createButton = new System.Windows.Forms.Button();
-            this.mountGroupBox = new System.Windows.Forms.GroupBox();
-            this.infoGroupBox = new System.Windows.Forms.GroupBox();
-            this.dateTextBox = new System.Windows.Forms.TextBox();
-            this.dateLabel = new System.Windows.Forms.Label();
-            this.detailsTextBox = new System.Windows.Forms.TextBox();
-            this.detailsLabel = new System.Windows.Forms.Label();
-            this.subtitleTextBox = new System.Windows.Forms.TextBox();
-            this.subtitleLabel = new System.Windows.Forms.Label();
-            this.titleTextBox = new System.Windows.Forms.TextBox();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.sizeToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.statusLabel = new System.Windows.Forms.Label();
-            this.connectionGroupBox.SuspendLayout();
-            this.createGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeTrackBar)).BeginInit();
-            this.mountGroupBox.SuspendLayout();
-            this.infoGroupBox.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            ipTextBox = new System.Windows.Forms.TextBox();
+            connectButton = new System.Windows.Forms.Button();
+            processesButton = new System.Windows.Forms.Button();
+            setupButton = new System.Windows.Forms.Button();
+            processesComboBox = new System.Windows.Forms.ComboBox();
+            userComboBox = new System.Windows.Forms.ComboBox();
+            dirsComboBox = new System.Windows.Forms.ComboBox();
+            searchButton = new System.Windows.Forms.Button();
+            mountButton = new System.Windows.Forms.Button();
+            unmountButton = new System.Windows.Forms.Button();
+            connectionGroupBox = new System.Windows.Forms.GroupBox();
+            ipLabel = new System.Windows.Forms.Label();
+            createGroupBox = new System.Windows.Forms.GroupBox();
+            sizeLabel = new System.Windows.Forms.Label();
+            sizeTrackBar = new System.Windows.Forms.TrackBar();
+            nameLabel = new System.Windows.Forms.Label();
+            nameTextBox = new System.Windows.Forms.TextBox();
+            createButton = new System.Windows.Forms.Button();
+            mountGroupBox = new System.Windows.Forms.GroupBox();
+            infoGroupBox = new System.Windows.Forms.GroupBox();
+            dateTextBox = new System.Windows.Forms.TextBox();
+            dateLabel = new System.Windows.Forms.Label();
+            detailsTextBox = new System.Windows.Forms.TextBox();
+            detailsLabel = new System.Windows.Forms.Label();
+            subtitleTextBox = new System.Windows.Forms.TextBox();
+            subtitleLabel = new System.Windows.Forms.Label();
+            titleTextBox = new System.Windows.Forms.TextBox();
+            titleLabel = new System.Windows.Forms.Label();
+            sizeToolTip = new System.Windows.Forms.ToolTip(components);
+            statusLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            fwVersionComboBox = new System.Windows.Forms.ComboBox();
+            label2 = new System.Windows.Forms.Label();
+            connectionGroupBox.SuspendLayout();
+            createGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sizeTrackBar).BeginInit();
+            mountGroupBox.SuspendLayout();
+            infoGroupBox.SuspendLayout();
+            SuspendLayout();
             // 
             // ipTextBox
             // 
-            this.ipTextBox.Location = new System.Drawing.Point(70, 19);
-            this.ipTextBox.Name = "ipTextBox";
-            this.ipTextBox.Size = new System.Drawing.Size(117, 20);
-            this.ipTextBox.TabIndex = 0;
+            ipTextBox.Location = new System.Drawing.Point(93, 29);
+            ipTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            ipTextBox.Name = "ipTextBox";
+            ipTextBox.Size = new System.Drawing.Size(155, 27);
+            ipTextBox.TabIndex = 0;
             // 
             // connectButton
             // 
-            this.connectButton.Location = new System.Drawing.Point(192, 19);
-            this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(181, 20);
-            this.connectButton.TabIndex = 1;
-            this.connectButton.Text = "Connect";
-            this.connectButton.UseVisualStyleBackColor = true;
-            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
+            connectButton.Location = new System.Drawing.Point(256, 29);
+            connectButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            connectButton.Name = "connectButton";
+            connectButton.Size = new System.Drawing.Size(241, 31);
+            connectButton.TabIndex = 1;
+            connectButton.Text = "Connect";
+            connectButton.UseVisualStyleBackColor = true;
+            connectButton.Click += connectButton_Click;
             // 
             // processesButton
             // 
-            this.processesButton.Location = new System.Drawing.Point(6, 47);
-            this.processesButton.Name = "processesButton";
-            this.processesButton.Size = new System.Drawing.Size(181, 21);
-            this.processesButton.TabIndex = 2;
-            this.processesButton.Text = "Get Processes";
-            this.processesButton.UseVisualStyleBackColor = true;
-            this.processesButton.Click += new System.EventHandler(this.processesButton_Click);
+            processesButton.Location = new System.Drawing.Point(8, 108);
+            processesButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            processesButton.Name = "processesButton";
+            processesButton.Size = new System.Drawing.Size(241, 32);
+            processesButton.TabIndex = 2;
+            processesButton.Text = "Get Processes";
+            processesButton.UseVisualStyleBackColor = true;
+            processesButton.Click += processesButton_Click;
             // 
             // setupButton
             // 
-            this.setupButton.Location = new System.Drawing.Point(6, 74);
-            this.setupButton.Name = "setupButton";
-            this.setupButton.Size = new System.Drawing.Size(181, 21);
-            this.setupButton.TabIndex = 3;
-            this.setupButton.Text = "Setup";
-            this.setupButton.UseVisualStyleBackColor = true;
-            this.setupButton.Click += new System.EventHandler(this.setupButton_Click);
+            setupButton.Location = new System.Drawing.Point(8, 150);
+            setupButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            setupButton.Name = "setupButton";
+            setupButton.Size = new System.Drawing.Size(241, 32);
+            setupButton.TabIndex = 3;
+            setupButton.Text = "Setup";
+            setupButton.UseVisualStyleBackColor = true;
+            setupButton.Click += setupButton_Click;
             // 
             // processesComboBox
             // 
-            this.processesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.processesComboBox.FormattingEnabled = true;
-            this.processesComboBox.Location = new System.Drawing.Point(192, 47);
-            this.processesComboBox.Name = "processesComboBox";
-            this.processesComboBox.Size = new System.Drawing.Size(181, 21);
-            this.processesComboBox.TabIndex = 4;
-            this.processesComboBox.SelectedIndexChanged += new System.EventHandler(this.processesComboBox_SelectedIndexChanged);
+            processesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            processesComboBox.FormattingEnabled = true;
+            processesComboBox.Location = new System.Drawing.Point(256, 108);
+            processesComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            processesComboBox.Name = "processesComboBox";
+            processesComboBox.Size = new System.Drawing.Size(240, 28);
+            processesComboBox.TabIndex = 4;
+            processesComboBox.SelectedIndexChanged += processesComboBox_SelectedIndexChanged;
             // 
             // userComboBox
             // 
-            this.userComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.userComboBox.FormattingEnabled = true;
-            this.userComboBox.Location = new System.Drawing.Point(192, 74);
-            this.userComboBox.Name = "userComboBox";
-            this.userComboBox.Size = new System.Drawing.Size(181, 21);
-            this.userComboBox.TabIndex = 5;
-            this.userComboBox.SelectedIndexChanged += new System.EventHandler(this.userComboBox_SelectedIndexChanged);
+            userComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            userComboBox.FormattingEnabled = true;
+            userComboBox.Location = new System.Drawing.Point(256, 150);
+            userComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            userComboBox.Name = "userComboBox";
+            userComboBox.Size = new System.Drawing.Size(240, 28);
+            userComboBox.TabIndex = 5;
+            userComboBox.SelectedIndexChanged += userComboBox_SelectedIndexChanged;
             // 
             // dirsComboBox
             // 
-            this.dirsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.dirsComboBox.FormattingEnabled = true;
-            this.dirsComboBox.Location = new System.Drawing.Point(193, 19);
-            this.dirsComboBox.Name = "dirsComboBox";
-            this.dirsComboBox.Size = new System.Drawing.Size(180, 21);
-            this.dirsComboBox.TabIndex = 7;
-            this.dirsComboBox.SelectedIndexChanged += new System.EventHandler(this.dirsComboBox_SelectedIndexChanged);
+            dirsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            dirsComboBox.FormattingEnabled = true;
+            dirsComboBox.Location = new System.Drawing.Point(257, 29);
+            dirsComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dirsComboBox.Name = "dirsComboBox";
+            dirsComboBox.Size = new System.Drawing.Size(239, 28);
+            dirsComboBox.TabIndex = 7;
+            dirsComboBox.SelectedIndexChanged += dirsComboBox_SelectedIndexChanged;
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(6, 19);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(181, 21);
-            this.searchButton.TabIndex = 6;
-            this.searchButton.Text = "Search";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            searchButton.Location = new System.Drawing.Point(8, 29);
+            searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new System.Drawing.Size(241, 32);
+            searchButton.TabIndex = 6;
+            searchButton.Text = "Search";
+            searchButton.UseVisualStyleBackColor = true;
+            searchButton.Click += searchButton_Click;
             // 
             // mountButton
             // 
-            this.mountButton.Location = new System.Drawing.Point(6, 48);
-            this.mountButton.Name = "mountButton";
-            this.mountButton.Size = new System.Drawing.Size(181, 23);
-            this.mountButton.TabIndex = 8;
-            this.mountButton.Text = "Mount";
-            this.mountButton.UseVisualStyleBackColor = true;
-            this.mountButton.Click += new System.EventHandler(this.mountButton_Click);
+            mountButton.Location = new System.Drawing.Point(8, 74);
+            mountButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mountButton.Name = "mountButton";
+            mountButton.Size = new System.Drawing.Size(241, 35);
+            mountButton.TabIndex = 8;
+            mountButton.Text = "Mount";
+            mountButton.UseVisualStyleBackColor = true;
+            mountButton.Click += mountButton_Click;
             // 
             // unmountButton
             // 
-            this.unmountButton.Location = new System.Drawing.Point(192, 48);
-            this.unmountButton.Name = "unmountButton";
-            this.unmountButton.Size = new System.Drawing.Size(181, 23);
-            this.unmountButton.TabIndex = 9;
-            this.unmountButton.Text = "Unmount";
-            this.unmountButton.UseVisualStyleBackColor = true;
-            this.unmountButton.Click += new System.EventHandler(this.unmountButton_Click);
+            unmountButton.Location = new System.Drawing.Point(256, 74);
+            unmountButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            unmountButton.Name = "unmountButton";
+            unmountButton.Size = new System.Drawing.Size(241, 35);
+            unmountButton.TabIndex = 9;
+            unmountButton.Text = "Unmount";
+            unmountButton.UseVisualStyleBackColor = true;
+            unmountButton.Click += unmountButton_Click;
             // 
             // connectionGroupBox
             // 
-            this.connectionGroupBox.Controls.Add(this.ipLabel);
-            this.connectionGroupBox.Controls.Add(this.ipTextBox);
-            this.connectionGroupBox.Controls.Add(this.connectButton);
-            this.connectionGroupBox.Controls.Add(this.processesButton);
-            this.connectionGroupBox.Controls.Add(this.setupButton);
-            this.connectionGroupBox.Controls.Add(this.processesComboBox);
-            this.connectionGroupBox.Controls.Add(this.userComboBox);
-            this.connectionGroupBox.Location = new System.Drawing.Point(7, 12);
-            this.connectionGroupBox.Name = "connectionGroupBox";
-            this.connectionGroupBox.Size = new System.Drawing.Size(379, 105);
-            this.connectionGroupBox.TabIndex = 10;
-            this.connectionGroupBox.TabStop = false;
-            this.connectionGroupBox.Text = "Connection";
+            connectionGroupBox.Controls.Add(label2);
+            connectionGroupBox.Controls.Add(ipLabel);
+            connectionGroupBox.Controls.Add(ipTextBox);
+            connectionGroupBox.Controls.Add(connectButton);
+            connectionGroupBox.Controls.Add(processesButton);
+            connectionGroupBox.Controls.Add(setupButton);
+            connectionGroupBox.Controls.Add(fwVersionComboBox);
+            connectionGroupBox.Controls.Add(processesComboBox);
+            connectionGroupBox.Controls.Add(userComboBox);
+            connectionGroupBox.Location = new System.Drawing.Point(9, 18);
+            connectionGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            connectionGroupBox.Name = "connectionGroupBox";
+            connectionGroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            connectionGroupBox.Size = new System.Drawing.Size(505, 195);
+            connectionGroupBox.TabIndex = 10;
+            connectionGroupBox.TabStop = false;
+            connectionGroupBox.Text = "Connection";
             // 
             // ipLabel
             // 
-            this.ipLabel.AutoSize = true;
-            this.ipLabel.Location = new System.Drawing.Point(6, 22);
-            this.ipLabel.Name = "ipLabel";
-            this.ipLabel.Size = new System.Drawing.Size(58, 13);
-            this.ipLabel.TabIndex = 6;
-            this.ipLabel.Text = "ip address:";
+            ipLabel.AutoSize = true;
+            ipLabel.Location = new System.Drawing.Point(8, 34);
+            ipLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            ipLabel.Name = "ipLabel";
+            ipLabel.Size = new System.Drawing.Size(81, 20);
+            ipLabel.TabIndex = 6;
+            ipLabel.Text = "IP Address:";
             // 
             // createGroupBox
             // 
-            this.createGroupBox.Controls.Add(this.sizeLabel);
-            this.createGroupBox.Controls.Add(this.sizeTrackBar);
-            this.createGroupBox.Controls.Add(this.nameLabel);
-            this.createGroupBox.Controls.Add(this.nameTextBox);
-            this.createGroupBox.Controls.Add(this.createButton);
-            this.createGroupBox.Location = new System.Drawing.Point(7, 210);
-            this.createGroupBox.Name = "createGroupBox";
-            this.createGroupBox.Size = new System.Drawing.Size(379, 129);
-            this.createGroupBox.TabIndex = 11;
-            this.createGroupBox.TabStop = false;
-            this.createGroupBox.Text = "Create New Saves";
+            createGroupBox.Controls.Add(sizeLabel);
+            createGroupBox.Controls.Add(sizeTrackBar);
+            createGroupBox.Controls.Add(nameLabel);
+            createGroupBox.Controls.Add(nameTextBox);
+            createGroupBox.Controls.Add(createButton);
+            createGroupBox.Location = new System.Drawing.Point(10, 396);
+            createGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            createGroupBox.Name = "createGroupBox";
+            createGroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            createGroupBox.Size = new System.Drawing.Size(505, 198);
+            createGroupBox.TabIndex = 11;
+            createGroupBox.TabStop = false;
+            createGroupBox.Text = "Create New Saves";
             // 
             // sizeLabel
             // 
-            this.sizeLabel.AutoSize = true;
-            this.sizeLabel.Location = new System.Drawing.Point(6, 48);
-            this.sizeLabel.Name = "sizeLabel";
-            this.sizeLabel.Size = new System.Drawing.Size(76, 13);
-            this.sizeLabel.TabIndex = 9;
-            this.sizeLabel.Text = "max save size:";
+            sizeLabel.AutoSize = true;
+            sizeLabel.Location = new System.Drawing.Point(8, 74);
+            sizeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            sizeLabel.Name = "sizeLabel";
+            sizeLabel.Size = new System.Drawing.Size(102, 20);
+            sizeLabel.TabIndex = 9;
+            sizeLabel.Text = "max save size:";
             // 
             // sizeTrackBar
             // 
-            this.sizeTrackBar.Location = new System.Drawing.Point(117, 48);
-            this.sizeTrackBar.Maximum = 32768;
-            this.sizeTrackBar.Minimum = 96;
-            this.sizeTrackBar.Name = "sizeTrackBar";
-            this.sizeTrackBar.Size = new System.Drawing.Size(257, 45);
-            this.sizeTrackBar.TabIndex = 8;
-            this.sizeTrackBar.Value = 96;
-            this.sizeTrackBar.Scroll += new System.EventHandler(this.sizeTrackBar_Scroll);
+            sizeTrackBar.Location = new System.Drawing.Point(156, 74);
+            sizeTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            sizeTrackBar.Maximum = 32768;
+            sizeTrackBar.Minimum = 96;
+            sizeTrackBar.Name = "sizeTrackBar";
+            sizeTrackBar.Size = new System.Drawing.Size(343, 56);
+            sizeTrackBar.TabIndex = 8;
+            sizeTrackBar.Value = 96;
+            sizeTrackBar.Scroll += sizeTrackBar_Scroll;
             // 
             // nameLabel
             // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(6, 25);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(105, 13);
-            this.nameLabel.TabIndex = 7;
-            this.nameLabel.Text = "save directory name:";
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(8, 38);
+            nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(145, 20);
+            nameLabel.TabIndex = 7;
+            nameLabel.Text = "save directory name:";
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(117, 22);
-            this.nameTextBox.MaxLength = 31;
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(256, 20);
-            this.nameTextBox.TabIndex = 6;
+            nameTextBox.Location = new System.Drawing.Point(156, 34);
+            nameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            nameTextBox.MaxLength = 31;
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new System.Drawing.Size(340, 27);
+            nameTextBox.TabIndex = 6;
             // 
             // createButton
             // 
-            this.createButton.Location = new System.Drawing.Point(5, 99);
-            this.createButton.Name = "createButton";
-            this.createButton.Size = new System.Drawing.Size(367, 23);
-            this.createButton.TabIndex = 6;
-            this.createButton.Text = "Create Save";
-            this.createButton.UseVisualStyleBackColor = true;
-            this.createButton.Click += new System.EventHandler(this.createButton_Click);
+            createButton.Location = new System.Drawing.Point(7, 152);
+            createButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            createButton.Name = "createButton";
+            createButton.Size = new System.Drawing.Size(489, 35);
+            createButton.TabIndex = 6;
+            createButton.Text = "Create Save";
+            createButton.UseVisualStyleBackColor = true;
+            createButton.Click += createButton_Click;
             // 
             // mountGroupBox
             // 
-            this.mountGroupBox.Controls.Add(this.searchButton);
-            this.mountGroupBox.Controls.Add(this.dirsComboBox);
-            this.mountGroupBox.Controls.Add(this.mountButton);
-            this.mountGroupBox.Controls.Add(this.unmountButton);
-            this.mountGroupBox.Location = new System.Drawing.Point(7, 123);
-            this.mountGroupBox.Name = "mountGroupBox";
-            this.mountGroupBox.Size = new System.Drawing.Size(379, 81);
-            this.mountGroupBox.TabIndex = 12;
-            this.mountGroupBox.TabStop = false;
-            this.mountGroupBox.Text = "Mount Existing Saves";
+            mountGroupBox.Controls.Add(label1);
+            mountGroupBox.Controls.Add(searchButton);
+            mountGroupBox.Controls.Add(dirsComboBox);
+            mountGroupBox.Controls.Add(mountButton);
+            mountGroupBox.Controls.Add(unmountButton);
+            mountGroupBox.Location = new System.Drawing.Point(9, 223);
+            mountGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mountGroupBox.Name = "mountGroupBox";
+            mountGroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mountGroupBox.Size = new System.Drawing.Size(505, 163);
+            mountGroupBox.TabIndex = 12;
+            mountGroupBox.TabStop = false;
+            mountGroupBox.Text = "Mount Existing Saves";
             // 
             // infoGroupBox
             // 
-            this.infoGroupBox.Controls.Add(this.dateTextBox);
-            this.infoGroupBox.Controls.Add(this.dateLabel);
-            this.infoGroupBox.Controls.Add(this.detailsTextBox);
-            this.infoGroupBox.Controls.Add(this.detailsLabel);
-            this.infoGroupBox.Controls.Add(this.subtitleTextBox);
-            this.infoGroupBox.Controls.Add(this.subtitleLabel);
-            this.infoGroupBox.Controls.Add(this.titleTextBox);
-            this.infoGroupBox.Controls.Add(this.titleLabel);
-            this.infoGroupBox.Location = new System.Drawing.Point(392, 12);
-            this.infoGroupBox.Name = "infoGroupBox";
-            this.infoGroupBox.Size = new System.Drawing.Size(396, 327);
-            this.infoGroupBox.TabIndex = 12;
-            this.infoGroupBox.TabStop = false;
-            this.infoGroupBox.Text = "Save Info";
+            infoGroupBox.Controls.Add(dateTextBox);
+            infoGroupBox.Controls.Add(dateLabel);
+            infoGroupBox.Controls.Add(detailsTextBox);
+            infoGroupBox.Controls.Add(detailsLabel);
+            infoGroupBox.Controls.Add(subtitleTextBox);
+            infoGroupBox.Controls.Add(subtitleLabel);
+            infoGroupBox.Controls.Add(titleTextBox);
+            infoGroupBox.Controls.Add(titleLabel);
+            infoGroupBox.Location = new System.Drawing.Point(523, 18);
+            infoGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            infoGroupBox.Name = "infoGroupBox";
+            infoGroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            infoGroupBox.Size = new System.Drawing.Size(528, 576);
+            infoGroupBox.TabIndex = 12;
+            infoGroupBox.TabStop = false;
+            infoGroupBox.Text = "Save Info";
             // 
             // dateTextBox
             // 
-            this.dateTextBox.Location = new System.Drawing.Point(9, 294);
-            this.dateTextBox.Name = "dateTextBox";
-            this.dateTextBox.ReadOnly = true;
-            this.dateTextBox.Size = new System.Drawing.Size(381, 20);
-            this.dateTextBox.TabIndex = 7;
+            dateTextBox.Location = new System.Drawing.Point(12, 452);
+            dateTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dateTextBox.Name = "dateTextBox";
+            dateTextBox.ReadOnly = true;
+            dateTextBox.Size = new System.Drawing.Size(507, 27);
+            dateTextBox.TabIndex = 7;
             // 
             // dateLabel
             // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(6, 278);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(31, 13);
-            this.dateLabel.TabIndex = 6;
-            this.dateLabel.Text = "date:";
+            dateLabel.AutoSize = true;
+            dateLabel.Location = new System.Drawing.Point(8, 428);
+            dateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            dateLabel.Name = "dateLabel";
+            dateLabel.Size = new System.Drawing.Size(42, 20);
+            dateLabel.TabIndex = 6;
+            dateLabel.Text = "date:";
             // 
             // detailsTextBox
             // 
-            this.detailsTextBox.Location = new System.Drawing.Point(9, 166);
-            this.detailsTextBox.Multiline = true;
-            this.detailsTextBox.Name = "detailsTextBox";
-            this.detailsTextBox.ReadOnly = true;
-            this.detailsTextBox.Size = new System.Drawing.Size(381, 109);
-            this.detailsTextBox.TabIndex = 5;
+            detailsTextBox.Location = new System.Drawing.Point(12, 255);
+            detailsTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            detailsTextBox.Multiline = true;
+            detailsTextBox.Name = "detailsTextBox";
+            detailsTextBox.ReadOnly = true;
+            detailsTextBox.Size = new System.Drawing.Size(507, 166);
+            detailsTextBox.TabIndex = 5;
             // 
             // detailsLabel
             // 
-            this.detailsLabel.AutoSize = true;
-            this.detailsLabel.Location = new System.Drawing.Point(6, 150);
-            this.detailsLabel.Name = "detailsLabel";
-            this.detailsLabel.Size = new System.Drawing.Size(40, 13);
-            this.detailsLabel.TabIndex = 4;
-            this.detailsLabel.Text = "details:";
+            detailsLabel.AutoSize = true;
+            detailsLabel.Location = new System.Drawing.Point(8, 231);
+            detailsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            detailsLabel.Name = "detailsLabel";
+            detailsLabel.Size = new System.Drawing.Size(56, 20);
+            detailsLabel.TabIndex = 4;
+            detailsLabel.Text = "details:";
             // 
             // subtitleTextBox
             // 
-            this.subtitleTextBox.Location = new System.Drawing.Point(9, 101);
-            this.subtitleTextBox.Multiline = true;
-            this.subtitleTextBox.Name = "subtitleTextBox";
-            this.subtitleTextBox.ReadOnly = true;
-            this.subtitleTextBox.Size = new System.Drawing.Size(381, 46);
-            this.subtitleTextBox.TabIndex = 3;
+            subtitleTextBox.Location = new System.Drawing.Point(12, 155);
+            subtitleTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            subtitleTextBox.Multiline = true;
+            subtitleTextBox.Name = "subtitleTextBox";
+            subtitleTextBox.ReadOnly = true;
+            subtitleTextBox.Size = new System.Drawing.Size(507, 69);
+            subtitleTextBox.TabIndex = 3;
             // 
             // subtitleLabel
             // 
-            this.subtitleLabel.AutoSize = true;
-            this.subtitleLabel.Location = new System.Drawing.Point(6, 85);
-            this.subtitleLabel.Name = "subtitleLabel";
-            this.subtitleLabel.Size = new System.Drawing.Size(43, 13);
-            this.subtitleLabel.TabIndex = 2;
-            this.subtitleLabel.Text = "subtitle:";
+            subtitleLabel.AutoSize = true;
+            subtitleLabel.Location = new System.Drawing.Point(8, 131);
+            subtitleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            subtitleLabel.Name = "subtitleLabel";
+            subtitleLabel.Size = new System.Drawing.Size(61, 20);
+            subtitleLabel.TabIndex = 2;
+            subtitleLabel.Text = "subtitle:";
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(9, 35);
-            this.titleTextBox.Multiline = true;
-            this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.ReadOnly = true;
-            this.titleTextBox.Size = new System.Drawing.Size(381, 47);
-            this.titleTextBox.TabIndex = 1;
+            titleTextBox.Location = new System.Drawing.Point(12, 54);
+            titleTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            titleTextBox.Multiline = true;
+            titleTextBox.Name = "titleTextBox";
+            titleTextBox.ReadOnly = true;
+            titleTextBox.Size = new System.Drawing.Size(507, 70);
+            titleTextBox.TabIndex = 1;
             // 
             // titleLabel
             // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(6, 19);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(26, 13);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "title:";
+            titleLabel.AutoSize = true;
+            titleLabel.Location = new System.Drawing.Point(8, 29);
+            titleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new System.Drawing.Size(38, 20);
+            titleLabel.TabIndex = 0;
+            titleLabel.Text = "title:";
             // 
             // statusLabel
             // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(4, 342);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(40, 13);
-            this.statusLabel.TabIndex = 13;
-            this.statusLabel.Text = "Status:";
+            statusLabel.AutoSize = true;
+            statusLabel.Location = new System.Drawing.Point(10, 599);
+            statusLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            statusLabel.Name = "statusLabel";
+            statusLabel.Size = new System.Drawing.Size(52, 20);
+            statusLabel.TabIndex = 13;
+            statusLabel.Text = "Status:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(8, 114);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.MaximumSize = new System.Drawing.Size(500, 500);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(489, 40);
+            label1.TabIndex = 6;
+            label1.Text = "Make sure to unmount before closing game, otherwise the save may get corrupted!";
+            // 
+            // fwVersionComboBox
+            // 
+            fwVersionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            fwVersionComboBox.FormattingEnabled = true;
+            fwVersionComboBox.Location = new System.Drawing.Point(141, 70);
+            fwVersionComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            fwVersionComboBox.Name = "fwVersionComboBox";
+            fwVersionComboBox.Size = new System.Drawing.Size(356, 28);
+            fwVersionComboBox.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(9, 73);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(124, 20);
+            label2.TabIndex = 6;
+            label2.Text = "Firmware version:";
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 362);
-            this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.infoGroupBox);
-            this.Controls.Add(this.mountGroupBox);
-            this.Controls.Add(this.createGroupBox);
-            this.Controls.Add(this.connectionGroupBox);
-            this.Name = "Main";
-            this.Text = "Playstation 4 Save Mounter 1.3.1 [ps4debug]";
-            this.connectionGroupBox.ResumeLayout(false);
-            this.connectionGroupBox.PerformLayout();
-            this.createGroupBox.ResumeLayout(false);
-            this.createGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeTrackBar)).EndInit();
-            this.mountGroupBox.ResumeLayout(false);
-            this.infoGroupBox.ResumeLayout(false);
-            this.infoGroupBox.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1067, 628);
+            Controls.Add(statusLabel);
+            Controls.Add(infoGroupBox);
+            Controls.Add(mountGroupBox);
+            Controls.Add(createGroupBox);
+            Controls.Add(connectionGroupBox);
+            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            Name = "Main";
+            Text = "Playstation 4 Save Mounter 1.3.1 [ps4debug]";
+            connectionGroupBox.ResumeLayout(false);
+            connectionGroupBox.PerformLayout();
+            createGroupBox.ResumeLayout(false);
+            createGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)sizeTrackBar).EndInit();
+            mountGroupBox.ResumeLayout(false);
+            mountGroupBox.PerformLayout();
+            infoGroupBox.ResumeLayout(false);
+            infoGroupBox.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -416,6 +487,9 @@
         private System.Windows.Forms.Label subtitleLabel;
         private System.Windows.Forms.TextBox titleTextBox;
         private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox fwVersionComboBox;
     }
 }
 

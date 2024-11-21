@@ -1,4 +1,17 @@
 # Playstation 4 Save Mounter 1.3
+Modified for ps5
+
+Supports PS5 FWs:
+- 4.03, 5.10
+	- Its possible some other firmwares with the same major version has the same offsets
+
+
+https://github.com/idlesauce/ps5debug
+
+https://github.com/idlesauce/ps5-get-save-mounter-1.3-offsets
+
+
+---
 
 ## Summary
 This program allows you to mount save data as READ/WRITE

@@ -1,10 +1,8 @@
 ﻿using libdebug;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace PS4Saves
@@ -19,10 +17,17 @@ namespace PS4Saves
         private int user = 0x0;
         string mp = "";
         bool log = false;
-        
+
         public Main()
         {
             InitializeComponent();
+            fwVersionComboBox.Items.AddRange(Offsets.Firmwares);
+            // fwVersionComboBox.SelectedItem = Offsets.SelectedFirmware;
+            fwVersionComboBox.SelectedValueChanged += (sender, e) =>
+            {
+                Offsets.SelectedFirmware = fwVersionComboBox.SelectedItem.ToString();
+            };
+
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length == 2 && args[1] == "-log")
             {
@@ -48,7 +53,7 @@ namespace PS4Saves
             }
             else
             {
-                value = size /BytesInGigabytes;
+                value = size / BytesInGigabytes;
                 str = "GB";
             }
             return String.Format("{0:0.##} {1}", value, str);
@@ -63,7 +68,7 @@ namespace PS4Saves
         }
         private void WriteLog(string msg)
         {
-            if(log)
+            if (log)
             {
 
                 msg = $"|{msg}|";
@@ -129,7 +134,7 @@ namespace PS4Saves
         private Process[] filter(ProcessList list)
         {
             List<Process> procs = new List<Process>();
-            for(int i = 0; i < list.processes.Length; i++)
+            for (int i = 0; i < list.processes.Length; i++)
             {
                 if (list.processes[i].name == "eboot.bin" || list.processes[i].name.EndsWith(".elf"))
                 {
@@ -178,24 +183,24 @@ namespace PS4Saves
 
             var ids = GetLoginList();
             List<User> users = new List<User>();
-            for(int i = 0; i < ids.Length; i++)
+            for (int i = 0; i < ids.Length; i++)
             {
-                if(ids[i] == -1)
+                if (ids[i] == -1)
                 {
                     continue;
                 }
-                users.Add(new User {id = ids[i], name = GetUserName(ids[i]) });
+                users.Add(new User { id = ids[i], name = GetUserName(ids[i]) });
             }
             userComboBox.DataSource = users.ToArray();
 
-            var ret = ps4.Call(pid, stub, libSceSaveDataBase + offsets.sceSaveDataInitialize3);
+            var ret = ps4.Call(pid, stub, libSceSaveDataBase + Offsets.sceSaveDataInitialize3);
             WriteLog($"sceSaveDataInitialize3 ret = 0x{ret:X}");
-          //PATCHES
-          //shows sce_ saves but doesn't mount them
-          /*ps4.WriteMemory(pid, libSceSaveDataBase + 0x32998, "///");
-            ps4.WriteMemory(pid, libSceSaveDataBase + 0x31694, "///");
-            ps4.WriteMemory(pid, libSceSaveDataBase + 0x31699, "///");*/
-          
+            //PATCHES
+            //shows sce_ saves but doesn't mount them
+            /*ps4.WriteMemory(pid, libSceSaveDataBase + 0x32998, "///");
+              ps4.WriteMemory(pid, libSceSaveDataBase + 0x31694, "///");
+              ps4.WriteMemory(pid, libSceSaveDataBase + 0x31699, "///");*/
+
 
             SetStatus("Setup Done :)");
         }
@@ -297,7 +302,7 @@ namespace PS4Saves
                 return;
             }
             var pm = ps4.GetProcessMaps(pid);
-            
+
             if (nameTextBox.Text == "")
             {
                 SetStatus("No Save Name");
@@ -313,7 +318,7 @@ namespace PS4Saves
             {
                 userId = GetUser(),
                 dirName = dirNameAddr,
-                blocks = (ulong) sizeTrackBar.Value,
+                blocks = (ulong)sizeTrackBar.Value,
                 mountMode = 4 | 2 | 8,
 
             };
@@ -341,7 +346,7 @@ namespace PS4Saves
 
         private int GetUser()
         {
-            if(user != 0)
+            if (user != 0)
             {
                 return user;
             }
@@ -355,7 +360,7 @@ namespace PS4Saves
         {
             var bufferAddr = ps4.AllocateMemory(pid, sizeof(int));
 
-            ps4.Call(pid, stub, libSceUserServiceBase + offsets.sceUserServiceGetInitialUser, bufferAddr);
+            ps4.Call(pid, stub, libSceUserServiceBase + Offsets.sceUserServiceGetInitialUser, bufferAddr);
 
             var id = ps4.ReadMemory<int>(pid, bufferAddr);
 
@@ -367,7 +372,7 @@ namespace PS4Saves
         private int[] GetLoginList()
         {
             var bufferAddr = ps4.AllocateMemory(pid, sizeof(int) * 4);
-            ps4.Call(pid, stub, libSceUserServiceBase + offsets.sceUserServiceGetLoginUserIdList, bufferAddr);
+            ps4.Call(pid, stub, libSceUserServiceBase + Offsets.sceUserServiceGetLoginUserIdList, bufferAddr);
 
             var id = ps4.ReadMemory(pid, bufferAddr, sizeof(int) * 4);
             var size = id.Length / sizeof(int);
@@ -384,7 +389,7 @@ namespace PS4Saves
         private string GetUserName(int userid)
         {
             var bufferAddr = ps4.AllocateMemory(pid, 17);
-            ps4.Call(pid, stub, libSceUserServiceBase + offsets.sceUserServiceGetUserName, userid, bufferAddr, 17);
+            ps4.Call(pid, stub, libSceUserServiceBase + Offsets.sceUserServiceGetUserName, userid, bufferAddr, 17);
             var str = ps4.ReadMemory<string>(pid, bufferAddr);
             ps4.FreeMemory(pid, bufferAddr, 17);
             return str;
@@ -397,9 +402,9 @@ namespace PS4Saves
 
             ps4.WriteMemory(pid, searchCondAddr, searchCond);
             ps4.WriteMemory(pid, searchResultAddr, searchResult);
-            var ret = ps4.Call(pid, stub, libSceSaveDataBase + offsets.sceSaveDataDirNameSearch, searchCondAddr, searchResultAddr);
+            var ret = ps4.Call(pid, stub, libSceSaveDataBase + Offsets.sceSaveDataDirNameSearch, searchCondAddr, searchResultAddr);
             WriteLog($"sceSaveDataDirNameSearch ret = 0x{ret:X}");
-            if ( ret == 0)
+            if (ret == 0)
             {
                 searchResult = ps4.ReadMemory<SceSaveDataDirNameSearchResult>(pid, searchResultAddr);
                 SearchEntry[] sEntries = new SearchEntry[searchResult.hitNum];
@@ -434,7 +439,7 @@ namespace PS4Saves
 
             ps4.WriteMemory(pid, mountAddr, mount);
             ps4.WriteMemory(pid, mountResultAddr, mountResult);
-            var ret = ps4.Call(pid, stub, libSceSaveDataBase + offsets.sceSaveDataMount2, mountAddr, mountResultAddr);
+            var ret = ps4.Call(pid, stub, libSceSaveDataBase + Offsets.sceSaveDataMount2, mountAddr, mountResultAddr);
             WriteLog($"sceSaveDataMount2 ret = 0x{ret:X}");
             if (ret == 0)
             {
@@ -457,7 +462,7 @@ namespace PS4Saves
             var mountPointAddr = ps4.AllocateMemory(pid, Marshal.SizeOf(typeof(SceSaveDataMountPoint)));
 
             ps4.WriteMemory(pid, mountPointAddr, mountPoint);
-            var ret = ps4.Call(pid, stub, libSceSaveDataBase + offsets.sceSaveDataUmount, mountPointAddr);
+            var ret = ps4.Call(pid, stub, libSceSaveDataBase + Offsets.sceSaveDataUmount, mountPointAddr);
             WriteLog($"sceSaveDataUmount ret = 0x{ret:X}");
             ps4.FreeMemory(pid, mountPointAddr, Marshal.SizeOf(typeof(SceSaveDataMountPoint)));
             mp = null;
@@ -470,7 +475,7 @@ namespace PS4Saves
 
             ps4.WriteMemory(pid, mountAddr, mount);
             ps4.WriteMemory(pid, mountResultAddr, mountResult);
-            var ret = ps4.Call(pid, stub, libSceSaveDataBase + offsets.sceSaveDataTransferringMount, mountAddr, mountResultAddr);
+            var ret = ps4.Call(pid, stub, libSceSaveDataBase + Offsets.sceSaveDataTransferringMount, mountAddr, mountResultAddr);
             WriteLog($"sceSaveDataTransferringMount ret = 0x{ret:X}");
             if (ret == 0)
             {
