@@ -6,14 +6,15 @@ namespace PS4Saves
 {
     class offsets
     {
-        public const int sceUserServiceGetInitialUser = 0x33B0;
-        public const int sceUserServiceGetLoginUserIdList = 0x2B40;
-        public const int sceUserServiceGetUserName = 0x3F20;
+        // offsets for ps5 4.03 - probably the same for 4.xx
+        public const int sceUserServiceGetInitialUser = 0x3290;
+        public const int sceUserServiceGetLoginUserIdList = 0x2A50;
+        public const int sceUserServiceGetUserName = 0x46E0;
 
-        public const int sceSaveDataMount2 = 0x24BE0;
-        public const int sceSaveDataUmount = 0x250C0;
-        public const int sceSaveDataDirNameSearch = 0x25CA0;
-        public const int sceSaveDataTransferringMount = 0x24F70;
-        public const int sceSaveDataInitialize3 = 0x24740;
+        public const int sceSaveDataMount2 = 0x31470;
+        public const int sceSaveDataUmount = 0x31940;
+        public const int sceSaveDataDirNameSearch = 0x32720;
+        public const int sceSaveDataTransferringMount = 0x317F0;
+        public const int sceSaveDataInitialize3 = 0x30FE0;
     }
 }

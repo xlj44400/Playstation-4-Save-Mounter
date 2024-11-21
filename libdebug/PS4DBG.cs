@@ -227,7 +227,7 @@ namespace libdebug
                             bytes = BitConverter.GetBytes(c);
                             break;
                         case byte b:
-                            bytes = BitConverter.GetBytes(b);
+                            bytes = [b];
                             break;
                         case short s:
                             bytes = BitConverter.GetBytes(s);

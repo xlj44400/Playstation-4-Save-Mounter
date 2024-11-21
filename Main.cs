@@ -174,7 +174,7 @@ namespace PS4Saves
             }
             libSceUserServiceBase = (ulong)tmp;
 
-            stub = pm.FindEntry("(NoName)clienthandler") == null ? ps4.InstallRPC(pid) : pm.FindEntry("(NoName)clienthandler").start;
+            stub = ps4.InstallRPC(pid); // dummy in ps5debug
 
             var ids = GetLoginList();
             List<User> users = new List<User>();
@@ -208,11 +208,7 @@ namespace PS4Saves
                 return;
             }
             var pm = ps4.GetProcessMaps(pid);
-            if (pm.FindEntry("(NoName)clienthandler") == null)
-            {
-                SetStatus("RPC Stub Not Found");
-                return;
-            }
+
             var dirNameAddr = ps4.AllocateMemory(pid, Marshal.SizeOf(typeof(SceSaveDataDirName)) * 1024);
             var paramAddr = ps4.AllocateMemory(pid, Marshal.SizeOf(typeof(SceSaveDataParam)) * 1024);
             SceSaveDataDirNameSearchCond searchCond = new SceSaveDataDirNameSearchCond
@@ -301,11 +297,7 @@ namespace PS4Saves
                 return;
             }
             var pm = ps4.GetProcessMaps(pid);
-            if (pm.FindEntry("(NoName)clienthandler") == null)
-            {
-                SetStatus("RPC Stub Not Found");
-                return;
-            }
+            
             if (nameTextBox.Text == "")
             {
                 SetStatus("No Save Name");
