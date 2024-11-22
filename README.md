@@ -1,15 +1,14 @@
 # Playstation 4 Save Mounter 1.3
-Modified for ps5
+This is an older version of the save mounter since its much easier to get working because it doesnt do any patching, but this has some drawbacks, read the original readme below.
 
 Supports PS5 FWs:
-- 4.03, 5.10
+- 4.03, 5.xx
+	- 5.10 and 5.50 have the same offsets so i just assume its the same for all of 5.xx
 	- Its possible some other firmwares with the same major version has the same offsets
 
+Requires ps5debug, here is a build of [Dizz's version](https://github.com/DizzRL/ps5debug), which supports 1.xx-5.xx, uses john-tornblom's elf loader: https://github.com/idlesauce/ps5debug
 
-https://github.com/idlesauce/ps5debug
-
-https://github.com/idlesauce/ps5-get-save-mounter-1.3-offsets
-
+To get required offsets for unsupported firmwares send this to john-tornbloms elf loader, and add the results to offsets.cs (the sdk, and this build currently only supports 1.xx-5.xx, once support is added for higher fws you'll need to re-build): https://github.com/idlesauce/ps5-get-save-mounter-1.3-offsets
 
 ---
 
