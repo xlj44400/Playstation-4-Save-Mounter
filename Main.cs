@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -65,6 +66,7 @@ namespace PS4Saves
         private void SetStatus(string msg)
         {
             statusLabel.Text = $"Status: {msg}";
+            this.Refresh();
         }
         private void WriteLog(string msg)
         {
@@ -195,11 +197,173 @@ namespace PS4Saves
 
             var ret = ps4.Call(pid, stub, libSceSaveDataBase + Offsets.sceSaveDataInitialize3);
             WriteLog($"sceSaveDataInitialize3 ret = 0x{ret:X}");
+            
             //PATCHES
-            //shows sce_ saves but doesn't mount them
-            /*ps4.WriteMemory(pid, libSceSaveDataBase + 0x32998, "///");
-              ps4.WriteMemory(pid, libSceSaveDataBase + 0x31694, "///");
-              ps4.WriteMemory(pid, libSceSaveDataBase + 0x31699, "///");*/
+            bool found_sce_str = false;
+            bool found_sce_sdmemory_str = false;
+            bool found_underscore_check = false;
+
+            // https://github.com/ChendoChap/Playstation-4-Save-Mounter/blob/e792dfacb3f9f787a61c5daf948f8a615aac7c7c/Main.cs#L219
+
+            // '_' patch pattern
+            // 80 E2 DF 80 C2 BF 80 FA 1A 72 ?? // ps4 - uses dl
+            // 80 E3 DF 80 C3 BF 80 FB 1A 72 ?? // ps5 - uses bl
+
+            // 'sce_' patch pattern
+            // 00 73 63 65 5F 00
+
+            // 'sce_sdmemory' patch pattern
+            // 00 73 63 65 5F 73 64 6D 65 6D 6F 72 79 00
+
+            SetStatus("Patching libSceSaveData... (this may take a while)");
+            foreach (var entry in pm.entries.Where(x => x.name.Contains("libSceSaveData")))
+            {
+                var data = ps4.ReadMemory(pid, entry.start, (int)(entry.end - entry.start));
+
+                for (int i = 0; i < data.Length; i++)
+                {
+                    if (i + 10 < data.Length &&
+                        data[i] == 0x80 &&
+                        (data[i + 1] == 0xE2 || data[i + 1] == 0xE3) &&
+                        data[i + 2] == 0xDF &&
+                        data[i + 3] == 0x80 &&
+                        (data[i + 4] == 0xC2 || data[i + 4] == 0xC3) &&
+                        data[i + 5] == 0xBF &&
+                        data[i + 6] == 0x80 &&
+                        (data[i + 7] == 0xFA || data[i + 7] == 0xFB) &&
+                        data[i + 9] == 0x72)
+                    {
+                        if (data[i + 8] == 0x1A)
+                        {
+                            found_underscore_check = true;
+                            WriteLog($"Found underscore check at 0x{entry.start + (ulong)i:X}");
+                            // replace the 1A with 0x30, at offset 8
+                            ps4.WriteMemory(pid, entry.start + (ulong)i + 8, (byte)0x30);
+                            WriteLog($"Patched underscore check at 0x{entry.start + (ulong)i:X}");
+                        }
+                        else if (data[i + 8] == 0x30)
+                        {
+                            found_underscore_check = true;
+                            WriteLog($"Underscore check already patched at 0x{entry.start + (ulong)i:X}");
+                        }
+                    }
+                    else if (i + 5 < data.Length &&
+                            data[i] == 0x00 &&
+                            data[i + 2] == 0x63 &&
+                            data[i + 3] == 0x65 &&
+                            data[i + 4] == 0x5F &&
+                            data[i + 5] == 0x00)
+                    {
+                        if (data[i + 1] == 0x73)
+                        {
+                            found_sce_str = true;
+                            WriteLog($"Found sce_ string at 0x{entry.start + (ulong)i:X}");
+                            ps4.WriteMemory(pid, entry.start + (ulong)i + 1, (byte)0x00);
+                            WriteLog($"Patched sce_ string at 0x{entry.start + (ulong)i:X}");
+                        }
+                        else if (data[i + 1] == 0x00)
+                        {
+                            found_sce_str = true;
+                            WriteLog($"sce_ string already patched at 0x{entry.start + (ulong)i:X}");
+                        }
+                    }
+                    else if (i + 13 < data.Length &&
+                            data[i] == 0x00 &&
+                            data[i + 2] == 0x63 &&
+                            data[i + 3] == 0x65 &&
+                            data[i + 4] == 0x5F &&
+                            data[i + 5] == 0x73 &&
+                            data[i + 6] == 0x64 &&
+                            data[i + 7] == 0x6D &&
+                            data[i + 8] == 0x65 &&
+                            data[i + 9] == 0x6D &&
+                            data[i + 10] == 0x6F &&
+                            data[i + 11] == 0x72 &&
+                            data[i + 12] == 0x79 &&
+                            data[i + 13] == 0x00)
+                    {
+                        if (data[i + 1] == 0x73)
+                        {
+                            found_sce_sdmemory_str = true;
+                            WriteLog($"Found sce_sdmemory string at 0x{entry.start + (ulong)i:X}");
+                            ps4.WriteMemory(pid, entry.start + (ulong)i + 1, (byte)0x00);
+                            WriteLog($"Patched sce_sdmemory string at 0x{entry.start + (ulong)i:X}");
+                        }
+                        else if (data[i + 1] == 0x00)
+                        {
+                            found_sce_sdmemory_str = true;
+                            WriteLog($"sce_sdmemory string already patched at 0x{entry.start + (ulong)i:X}");
+                        }
+                    }
+                }
+            }
+
+            SetStatus("Patching SceShellCore... (this may take a while)");
+            bool found_sce_sdmemory_str_in_shellcore = false;
+            {
+                // SceShellCore patches
+                // 'sce_sdmemory' patch
+                // TODO: verify keystone patch
+
+                var procs = ps4.GetProcessList();
+                var shellcore = procs.FindProcess("SceShellCore");
+                if (shellcore == null)
+                {
+                    MessageBox.Show("SceShellCore not found", "Error");
+                    return;
+                }
+
+                var shellcore_pm = ps4.GetProcessMaps(shellcore.pid);
+
+                foreach (var entry in shellcore_pm.entries.Where(x => x.name == "executable"))
+                {
+                    var data = ps4.ReadMemory(shellcore.pid, entry.start, (int)(entry.end - entry.start));
+
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        if (i + 14 < data.Length &&
+                            data[i] == 0x00 &&
+                            data[i + 2] == 0x63 &&
+                            data[i + 3] == 0x65 &&
+                            data[i + 4] == 0x5F &&
+                            data[i + 5] == 0x73 &&
+                            data[i + 6] == 0x64 &&
+                            data[i + 7] == 0x6D &&
+                            data[i + 8] == 0x65 &&
+                            data[i + 9] == 0x6D &&
+                            data[i + 10] == 0x6F &&
+                            data[i + 11] == 0x72 &&
+                            data[i + 12] == 0x79 &&
+                            data[i + 13] == 0x00)
+                        {
+                            if (data[i + 1] == 0x73)
+                            {
+                                found_sce_sdmemory_str_in_shellcore = true;
+                                WriteLog($"Found sce_sdmemory string at 0x{entry.start + (ulong)i:X}");
+                                ps4.WriteMemory(shellcore.pid, entry.start + (ulong)i + 1, (byte)0x00);
+                                WriteLog($"Patched sce_sdmemory string at 0x{entry.start + (ulong)i:X}");
+                            }
+                            else if (data[i + 1] == 0x00)
+                            {
+                                found_sce_sdmemory_str_in_shellcore = true;
+                                WriteLog($"sce_sdmemory string already patched at 0x{entry.start + (ulong)i:X}");
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
+            if (!found_sce_str || !found_sce_sdmemory_str || !found_underscore_check)
+            {
+                MessageBox.Show("Wasnt able to apply all ingame sce_ patches, some saves may not show up.", "Warning");
+            }
+
+            if (!found_sce_sdmemory_str_in_shellcore)
+            {
+                MessageBox.Show("Wasnt able to apply all SceShellCore sce_sdmemory patches, some saves may not show up.", "Warning");
+            }
 
 
             SetStatus("Setup Done :)");
