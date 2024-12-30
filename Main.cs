@@ -445,17 +445,52 @@ namespace PS4Saves
         {
             if (mp == "")
             {
-                SetStatus("No save mounted");
-                return;
+                var promptResult = MessageBox.Show("No save mounted with this app, do you want to manually select a mountpoint?", "No save mounted", MessageBoxButtons.YesNo);
+                if (promptResult == DialogResult.No)
+                {
+                    return;
+                }
+
+                using var form = new Form();
+                form.Text = "Select Save Data";
+                form.Size = new System.Drawing.Size(200, 100);
+                form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                form.MaximizeBox = false;
+                form.MinimizeBox = false;
+                form.StartPosition = FormStartPosition.CenterScreen;
+                var comboBox = new ComboBox();
+                comboBox.Location = new System.Drawing.Point(10, 10);
+                comboBox.Size = new System.Drawing.Size(150, 20);
+                comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBox.Items.AddRange(new string[] { "/savedata0", "/savedata1", "/savedata2", "/savedata3", "/savedata4", "/savedata5", "/savedata6", "/savedata7", "/savedata8", "/savedata9", "/savedata10", "/savedata11", "/savedata12", "/savedata13", "/savedata14", "/savedata15" });
+                comboBox.SelectedIndex = 0;
+                var button = new Button();
+                button.Location = new System.Drawing.Point(10, 40);
+                button.Size = new System.Drawing.Size(150, 20);
+                button.Text = "Unmount";
+                button.Click += (sender2, e2) =>
+                {
+                    mp = comboBox.SelectedItem.ToString();
+                    form.Close();
+                };
+                form.Controls.Add(comboBox);
+                form.Controls.Add(button);
+                form.ShowDialog();
+
+                if (mp == "")
+                {
+                    return;
+                }
             }
+
             SceSaveDataMountPoint mountPoint = new SceSaveDataMountPoint
             {
                 data = mp,
             };
 
             Unmount(mountPoint);
+            SetStatus($"Save Unmounted ({mp})");
             mp = null;
-            SetStatus("Save Unmounted");
         }
 
         private void createButton_Click(object sender, EventArgs e)
