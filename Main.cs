@@ -443,7 +443,7 @@ namespace PS4Saves
 
         private void unmountButton_Click(object sender, EventArgs e)
         {
-            if (mp == "")
+            if (string.IsNullOrEmpty(mp))
             {
                 var promptResult = MessageBox.Show("No save mounted with this app, do you want to manually select a mountpoint?", "No save mounted", MessageBoxButtons.YesNo);
                 if (promptResult == DialogResult.No)
@@ -477,7 +477,7 @@ namespace PS4Saves
                 form.Controls.Add(button);
                 form.ShowDialog();
 
-                if (mp == "")
+                if (string.IsNullOrEmpty(mp))
                 {
                     return;
                 }
