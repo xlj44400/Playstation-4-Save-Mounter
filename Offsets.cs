@@ -14,6 +14,7 @@ public static class Offsets
         "4.03" => 0x3290,
         "4.50" => 0x3290,    // offsets for both 4.03 and 4.50 are same
         "5.xx" => 0x33B0,
+        "7.61" => 0x33C0, 
         _ => throw new Exception("Unsupported firmware (did you select an item from the dropdown?)")
     };
 
@@ -24,6 +25,7 @@ public static class Offsets
 		"4.03" => 0x2A50,
         "4.50" => 0x2A50,    
         "5.xx" => 0x2B00,
+        "7.61" => 0x2B10, 
         _ => throw new Exception("Unsupported firmware (did you select an item from the dropdown?)")
     };
 
@@ -34,6 +36,7 @@ public static class Offsets
         "4.03" => 0x46E0,
         "4.50" => 0x46E0,    
         "5.xx" => 0x4830,
+	"7.61" => 0x4730, 
         _ => throw new Exception("Unsupported firmware (did you select an item from the dropdown?)")
     };
 
@@ -44,6 +47,7 @@ public static class Offsets
         "4.03" => 0x31470,
         "4.50" => 0x31470,    
         "5.xx" => 0x321B0,
+	"7.61" => 0x32940, 
         _ => throw new Exception("Unsupported firmware (did you select an item from the dropdown?)")
     };
 
@@ -54,6 +58,7 @@ public static class Offsets
         "4.03" => 0x31940,
         "4.50" => 0x31940,    
         "5.xx" => 0x32680,
+	"7.61" => 0x32DE0, 
         _ => throw new Exception("Unsupported firmware (did you select an item from the dropdown?)")
     };
 
@@ -64,6 +69,7 @@ public static class Offsets
         "4.03" => 0x32720,
         "4.50" => 0x32720,    
         "5.xx" => 0x33460,
+	"7.61" => 0x33BC0, 
         _ => throw new Exception("Unsupported firmware (did you select an item from the dropdown?)")
     };
 
@@ -74,6 +80,7 @@ public static class Offsets
         "4.03" => 0x317F0,
         "4.50" => 0x317F0,    
         "5.xx" => 0x32530,
+	"7.61" => 0x32CA0, 
         _ => throw new Exception("Unsupported firmware (did you select an item from the dropdown?)")
     };
 
@@ -84,6 +91,7 @@ public static class Offsets
         "4.03" => 0x30FE0,
         "4.50" => 0x30FE0,    
         "5.xx" => 0x31D20,
+	"7.61" => 0x324B0, 
         _ => throw new Exception("Unsupported firmware (did you select an item from the dropdown?)")
     };
 }
