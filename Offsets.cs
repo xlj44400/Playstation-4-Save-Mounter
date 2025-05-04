@@ -4,7 +4,7 @@ namespace PS4Saves;
 
 public static class Offsets
 {
-    public static readonly string[] Firmwares = ["2.50", "3.20", "4.03", "4.50","5.xx"];
+    public static readonly string[] Firmwares = ["2.50", "3.20", "4.03", "4.50","5.xx","7.61"];
     public static string SelectedFirmware { get; set; } = string.Empty; // updated by fwVersionComboBox
   
     public static ulong sceUserServiceGetInitialUser => SelectedFirmware switch
